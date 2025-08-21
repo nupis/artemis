@@ -850,7 +850,7 @@ public class ParticipationResource {
         User user = userRepository.getUserWithGroupsAndAuthorities();
         checkAccessPermissionAtLeastInstructor(participation, user);
         log.info("Clean up participation with build plan {} by {}", participation.getBuildPlanId(), principal.getName());
-        participationDeletionService.cleanupBuildPlan(participation);
+        // participationDeletionService.cleanupBuildPlan(participation);
         return ResponseEntity.ok().body(participation);
     }
 

@@ -115,7 +115,7 @@ public class ExerciseDeletionService {
         try (var threadPool = Executors.newFixedThreadPool(10)) {
             var futures = exercise.getStudentParticipations().stream().map(participation -> CompletableFuture.runAsync(() -> {
                 try {
-                    participationDeletionService.cleanupBuildPlan((ProgrammingExerciseStudentParticipation) participation);
+                    // participationDeletionService.cleanupBuildPlan((ProgrammingExerciseStudentParticipation) participation);
                     if (!deleteRepositories) {
                         return; // in this case, we are done with the participation
                     }
