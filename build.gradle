@@ -180,7 +180,9 @@ dependencies {
     implementation "de.jplag:swift:${jplag_version}"
     implementation "de.jplag:text:${jplag_version}"
     implementation "de.jplag:typescript:${jplag_version}"
-
+    implementation platform("org.springframework.ai:spring-ai-bom:1.0.1")
+    implementation "org.springframework.ai:spring-ai-starter-model-azure-openai"
+    implementation "org.springframework.ai:spring-ai-starter-model-openai"
     // we have to override those values to use the latest version
     implementation "org.slf4j:jcl-over-slf4j:${slf4j_version}"
     implementation "org.slf4j:jul-to-slf4j:${slf4j_version}"
