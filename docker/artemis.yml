@@ -15,6 +15,8 @@ services:
 #            target: runtime
         volumes:
             - /srv/artemis/docker/.docker-data/artemis-data:/opt/artemis/data
+            - /srv/artemis/docker/.docker-data/artemis-config:/opt/artemis/config
+            - /srv/artemis/docker/.docker-data/artemis-public-content:/opt/artemis/public/content
         # system environments are the default way for custom configuration overrides in the containerized artemis setups
         # either add them in the environments or env_file section (alternative to application-local.yml)
         env_file:
