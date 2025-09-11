@@ -7,7 +7,7 @@ services:
         container_name: artemis-postgres
         image: docker.io/library/postgres:17.5-alpine
         pull_policy: missing
-        user: postgres
+#        user: postgres
         command: ["postgres", "-c", "max_connections=10000"]
         volumes:
             - /srv/artemis/docker/.docker-data/artemis-postgres-data:/var/lib/postgresql/data
