@@ -9,17 +9,17 @@ services:
         image: docker.io/library/nginx:1.28.0-alpine-slim
         pull_policy: missing
         volumes:
-            - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-            - ./nginx/timeouts.conf:/etc/nginx/conf.d/timeouts.conf:ro
-            - ./nginx/artemis-nginx.conf:/etc/nginx/conf.d/artemis-nginx.conf:ro
-            - ./nginx/artemis-upstream-single-node.conf:/etc/nginx/includes/artemis-upstream.conf:ro
-            - ./nginx/artemis-ssh-upstream-single-node.conf:/etc/nginx/includes/artemis-ssh-upstream.conf:ro
-            - ./nginx/artemis-server.conf:/etc/nginx/includes/artemis-server.conf:ro
-            - ./nginx/dhparam.pem:/etc/nginx/dhparam.pem:ro
-            - ./nginx/nginx_503.html:/usr/share/nginx/html/503.html:ro
-            - ./nginx/70-artemis-setup.sh:/docker-entrypoint.d/70-artemis-setup.sh
-            - ../src/test/playwright/certs/artemis-nginx+4.pem:/certs/fullchain.pem:ro
-            - ../src/test/playwright/certs/artemis-nginx+4-key.pem:/certs/priv_key.pem:ro
+          - /srv/artemis/docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+          - /srv/artemis/docker/nginx/timeouts.conf:/etc/nginx/conf.d/timeouts.conf:ro
+          - /srv/artemis/docker/nginx/artemis-nginx.conf:/etc/nginx/conf.d/artemis-nginx.conf:ro
+          - /srv/artemis/docker/nginx/artemis-upstream-single-node.conf:/etc/nginx/includes/artemis-upstream.conf:ro
+          - /srv/artemis/docker/nginx/artemis-ssh-upstream-single-node.conf:/etc/nginx/includes/artemis-ssh-upstream.conf:ro
+          - /srv/artemis/docker/nginx/artemis-server.conf:/etc/nginx/includes/artemis-server.conf:ro
+          - /srv/artemis/docker/nginx/dhparam.pem:/etc/nginx/dhparam.pem:ro
+          - /srv/artemis/docker/nginx/nginx_503.html:/usr/share/nginx/html/503.html:ro
+          - /srv/artemis/docker/nginx/70-artemis-setup.sh:/docker-entrypoint.d/70-artemis-setup.sh
+          - /srv/cert/server.crt:/certs/server.pem:ro
+          - /srv/cert/server.key:/certs/server.key:ro
         # ulimits adopted from the nginx_security_limits.conf in the Artemis ansible collection
         ulimits:
             nofile:

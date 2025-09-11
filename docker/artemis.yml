@@ -8,13 +8,13 @@ services:
         # look in the docs for more information about how to build your Artemis code with Docker
         # https://docs.artemis.cit.tum.de/dev/setup/#
         image: ghcr.io/ls1intum/artemis
-        build:
-            context: ..
-            dockerfile: docker/artemis/Dockerfile
-            pull: true
-            target: runtime
+#        build:
+#            context: ..
+#            dockerfile: docker/artemis/Dockerfile
+#            pull: true
+#            target: runtime
         volumes:
-            - artemis-data:/opt/artemis/data
+            - /srv/artemis/docker/.docker-data/artemis-data:/opt/artemis/data
         # system environments are the default way for custom configuration overrides in the containerized artemis setups
         # either add them in the environments or env_file section (alternative to application-local.yml)
         env_file:
@@ -39,6 +39,3 @@ networks:
     artemis:
         driver: "bridge"
         name: artemis
-volumes:
-    artemis-data:
-        name: artemis-data

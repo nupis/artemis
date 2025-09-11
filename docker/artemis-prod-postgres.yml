@@ -10,18 +10,20 @@ services:
         depends_on:
             postgres:
                 condition: service_healthy
-        restart: on-failure:3
+        restart: unless-stopped
         volumes:
-            - ./.docker-data/artemis-data:/opt/artemis/data
+            - /srv/artemis/docker/.docker-data/artemis-data:/opt/artemis/data
+        environment:
+            ARTEMIS_USERMANAGEMENT_INTERNALADMIN_PASSWORD: $ARTEMIS_USERMANAGEMENT_INTERNALADMIN_PASSWORD
         env_file:
             - ./artemis/config/postgres.env
     postgres:
         extends:
             file: ./postgres.yml
             service: postgres
-        restart: on-failure:3
+        restart: unless-stopped
         volumes:
-            - ./.docker-data/artemis-postgres-data:/var/lib/postgresql/data
+            - /srv/artemis/docker/.docker-data/artemis-postgres-data:/var/lib/postgresql/data
     nginx:
         extends:
             file: ./nginx.yml
@@ -30,7 +32,7 @@ services:
         depends_on:
             artemis-app:
                 condition: service_started
-        restart: on-failure:3
+        restart: unless-stopped
 
 networks:
     artemis:
